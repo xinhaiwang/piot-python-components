@@ -1,13 +1,5 @@
-#####
-# 
-# This class is part of the Programming the Internet of Things project.
-# 
-# It is provided as a simple shell to guide the student and assist with
-# implementation for the Programming the Internet of Things exercises,
-# and designed to be modified by the student as needed.
-#
-
 import programmingtheiot.common.ConfigConst as ConfigConst
+import logging
 
 from programmingtheiot.data.SensorData import SensorData
 
@@ -16,14 +8,24 @@ class BaseSystemUtilTask():
 	Shell representation of class for student implementation.
 	
 	"""
-	
-	def __init__(self, sensorName = ConfigConst.NOT_SET):
+
+	def __init__(self, sensorName=ConfigConst.NOT_SET):
 		###
 		# TODO: fill in the details here
 		self.latestSensorData = None
 		
 		pass
-	
+
+	def __init__(self, name=ConfigConst.NOT_SET, typeID=ConfigConst.DEFAULT_SENSOR_TYPE):
+		self.name = name
+		self.typeID = typeID
+
+	def getName(self):
+		return self.name
+
+	def getTypeID(self):
+		return self.typeID
+
 	def generateTelemetry(self) -> SensorData:
 		###
 		# TODO: fill in the details here
@@ -31,9 +33,14 @@ class BaseSystemUtilTask():
 		# NOTE: Use self._getSystemUtil() to retrieve the value from the sub-class
 		pass
 		
+	def getTelemetryValue(self):
+		val = self._getSystemUtil()
+		logging.info(self.__class__.__name__, val)
+		return val
+
 	def getTelemetryValue(self) -> float:
 		pass
-	
+
 	def _getSystemUtil(self) -> float:
 		"""
 		Template method implemented by sub-class.
@@ -43,4 +50,3 @@ class BaseSystemUtilTask():
 		@return float
 		"""
 		pass
-		

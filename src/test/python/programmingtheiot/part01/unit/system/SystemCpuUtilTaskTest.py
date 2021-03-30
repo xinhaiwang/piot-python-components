@@ -1,16 +1,8 @@
-#####
-# 
-# This class is part of the Programming the Internet of Things
-# project, and is available via the MIT License, which can be
-# found in the LICENSE file at the top level of this repository.
-# 
-# Copyright (c) 2020 by Andrew D. King
-# 
-
 import logging
 import unittest
 
 from programmingtheiot.cda.system.SystemCpuUtilTask import SystemCpuUtilTask
+
 
 class SystemCpuUtilTaskTest(unittest.TestCase):
 	"""
@@ -35,10 +27,9 @@ class SystemCpuUtilTaskTest(unittest.TestCase):
 
 	def testGetTelemetryValue(self):
 		val = self.cpuUtilTask.getTelemetryValue()
-		
 		self.assertGreaterEqual(val, 0.0)
 		logging.info("CPU utilization: %s", str(val))
 
+
 if __name__ == "__main__":
 	unittest.main()
-	

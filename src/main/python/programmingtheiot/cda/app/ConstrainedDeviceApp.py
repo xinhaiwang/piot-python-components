@@ -1,22 +1,15 @@
-#####
-# 
-# This class is part of the Programming the Internet of Things
-# project, and is available via the MIT License, which can be
-# found in the LICENSE file at the top level of this repository.
-# 
-# You may find it more helpful to your design to adjust the
-# functionality, constants and interfaces (if there are any)
-# provided within in order to meet the needs of your specific
-# Programming the Internet of Things project.
-# 
-
 import logging
 
 from time import sleep
 
-logging.basicConfig(format = '%(asctime)s:%(name)s:%(levelname)s:%(message)s', level = logging.DEBUG)
+import programmingtheiot.common.ConfigConst as ConfigConst
+from programmingtheiot.common.ConfigUtil import ConfigUtil
+from programmingtheiot.cda.system.SystemPerformanceManager import SystemPerformanceManager
 
-class ConstrainedDeviceApp():
+logging.basicConfig(format='%(asctime)s:%(name)s:%(levelname)s:%(message)s', level=logging.DEBUG)
+
+
+class ConstrainedDeviceApp:
 	"""
 	Definition of the ConstrainedDeviceApp class.
 	
@@ -29,8 +22,8 @@ class ConstrainedDeviceApp():
 		@param path The name of the resource to apply to the URI.
 		"""
 		logging.info("Initializing CDA...")
-		
-		# TODO: implementation here
+		self.sysPerfManager = SystemPerformanceManager()
+		#self.pollRate = ConfigUtil.getInteger(ConfigConst.CONSTRAINED_DEVICE, ConfigConst.POLL_CYCLES_KEY, ConfigConst.DEFAULT_POLL_CYCLES)
 
 	def startApp(self):
 		"""
@@ -38,9 +31,7 @@ class ConstrainedDeviceApp():
 		
 		"""
 		logging.info("Starting CDA...")
-		
-		# TODO: implementation here
-		
+		self.sysPerfManager.startManager()
 		logging.info("CDA started.")
 
 	def stopApp(self, code: int):
@@ -49,9 +40,7 @@ class ConstrainedDeviceApp():
 		
 		"""
 		logging.info("CDA stopping...")
-		
-		# TODO: implementation here
-		
+		self.sysPerfManager.stopManager()
 		logging.info("CDA stopped with exit code %s.", str(code))
 		
 	def parseArgs(self, args):
@@ -75,8 +64,8 @@ def main():
 	# run for 10 seconds - this can be changed as needed
 	sleep(10)
 	
-	# optionally stop the app - this can be removed if needed
 	cda.stopApp(0)
+
 
 if __name__ == '__main__':
 	"""
@@ -84,4 +73,3 @@ if __name__ == '__main__':
 	
 	"""
 	main()
-	

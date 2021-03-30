@@ -1,16 +1,8 @@
-#####
-# 
-# This class is part of the Programming the Internet of Things
-# project, and is available via the MIT License, which can be
-# found in the LICENSE file at the top level of this repository.
-# 
-# Copyright (c) 2020 by Andrew D. King
-# 
-
 import logging
 import unittest
 
 from programmingtheiot.cda.app.ConstrainedDeviceApp import ConstrainedDeviceApp
+
 
 class ConstrainedDeviceAppTest(unittest.TestCase):
 	"""
